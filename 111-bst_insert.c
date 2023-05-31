@@ -7,38 +7,40 @@
  */
 bst_t *bst_insert(bst_t **tree, int value)
 {
-bst_t *current = NULL, *parent = NULL, *node = NULL;
-int lr = 0;
-if (tree == NULL)
+bst_t *new, *temp;
+binary_tree_t *trv;
+if (!tree)
 	return (NULL);
-current = *tree;
-node = binary_tree_node(current, value);
-if (!node)
-	return (NULL);
-else if (!current)
+else if (*tree == NULL)
 {
-*tree = node;
-return (node);
+trv = binary_tree_node((binary_tree_t *)(*tree), value);
+new = (bst_t *)trv;
+*tree = new;
 }
-while (true)
-{
-parent = current;
-if (value < parent->n)
-	current = current->left, lr = 0;
-else if (value > parent->n)
-	current = current->right, lr = 1;
 else
-	break;
-if (!current)
 {
-if (lr == 0)
-	parent->left = node;
+temp = *tree;
+if (value < temp->n)
+{
+if (temp->left)
+	new = bst_insert(&temp->left, value);
 else
-	parent->right = node;
-node->parent = parent;
-return (node);
+{
+trv = binary_tree_node((binary_tree_t *)temp, value);
+new = temp->left = (bst_t *)trv;
 }
 }
-free(node);
+else if (value > temp->n)
+{
+if (temp->right)
+	new = bst_insert(&temp->right, value);
+else
+{
+trv = binary_tree_node((binary_tree_t *)temp, value);
+new = temp->right = trv;
+}
+}
 return (NULL);
+}
+return (new);
 }
