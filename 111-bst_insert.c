@@ -13,14 +13,14 @@ if (tree == NULL)
 	return (NULL);
 current = *tree;
 node = binary_tree_node(current, value);
-if (node == NULL)
+if (!node)
 	return (NULL);
 else if (!current)
 {
 *tree = node;
 return (node);
 }
-while (1)
+while (true)
 {
 parent = current;
 if (value < parent->n)
