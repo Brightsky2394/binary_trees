@@ -10,7 +10,10 @@ size_t depth;
 depth = 0;
 if (!tree)
 	return (0);
-if (tree->parent)
-	depth = 1 + binary_tree_depth(tree->parent);
+while (tree->parent)
+{
+tree = tree->parent;
+depth++;
+}
 return (depth);
 }
