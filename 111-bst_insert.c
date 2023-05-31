@@ -11,7 +11,7 @@ bst_t *bst_insert(bst_t **tree, int value)
 {
 bst_t *current = NULL, *parent = NULL, *node = NULL;
 int lr = 0;
-if (tree == NULL)
+if (!tree)
 	return (NULL);
 current = *tree;
 node = binary_tree_node(current, value);
@@ -22,7 +22,7 @@ if (!current)
 *tree = node;
 return (node);
 }
-while (!0)
+while (1)
 {
 parent = current;
 
