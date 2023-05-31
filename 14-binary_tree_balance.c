@@ -16,7 +16,7 @@ if (tree)
 lft = tree->left ? 1 + binary_tree_height_b(tree->left) : 1;
 ryr = tree->right ? 1 + binary_tree_height_b(tree->right) : 1;
 }
-return ((lft > ryt) ? l : ryt);
+return ((lft > ryt) ? lft : ryt);
 }
 }
 
